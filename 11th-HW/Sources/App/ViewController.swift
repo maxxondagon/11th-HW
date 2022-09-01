@@ -6,10 +6,18 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController: UIViewController {
 
     // MARK: - Outlets
+    
+    private lazy var backgroundImageView: UIImageView = {
+        let backgroundImage = UIImage(named: "background")
+        let backGroundView = UIImageView(image: backgroundImage)
+        backGroundView.translatesAutoresizingMaskIntoConstraints = false
+        return backGroundView
+    }()
     
     // MARK: - Lifecycle
     
@@ -22,11 +30,15 @@ class ViewController: UIViewController {
     // MARK: - Setup
 
     private func setupHierarchy() {
-        
+        view.addSubview(backgroundImageView)
     }
     
     private func setupLayout() {
-        
+        backgroundImageView.snp.makeConstraints { make in
+            make.center.equalTo(view)
+            make.height.equalTo(view)
+            make.width.equalTo(view)
+        }
     }
     
     // MARK: - Actions
