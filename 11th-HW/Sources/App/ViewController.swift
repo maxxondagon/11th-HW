@@ -72,6 +72,30 @@ class ViewController: UIViewController {
         return stack
     }()
     
+    private lazy var loginButton: UIButton = {
+        let signIn = UIButton(type: .system)
+        signIn.layer.shadowColor = UIColor.black.cgColor
+        signIn.layer.shadowOpacity = 0.3
+        signIn.layer.shadowOffset = .zero
+        signIn.layer.shadowRadius = 10
+        signIn.layer.shouldRasterize = true
+        signIn.layer.rasterizationScale = UIScreen.main.scale
+        signIn.setTitle("Login", for: .normal)
+        signIn.setTitleColor(UIColor.white, for: .normal)
+        signIn.backgroundColor = .systemCyan
+        signIn.layer.cornerRadius = 25
+        signIn.translatesAutoresizingMaskIntoConstraints = false
+        return signIn
+    }()
+    
+    private lazy var resetPasswordButton: UIButton = {
+        let resetPassword = UIButton(type: .system)
+        resetPassword.setTitle("Forgot your password?", for: .normal)
+        resetPassword.setTitleColor(UIColor.white, for: .normal)
+        resetPassword.translatesAutoresizingMaskIntoConstraints = false
+        return resetPassword
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -88,6 +112,8 @@ class ViewController: UIViewController {
         view.addSubview(autorizationStack)
         autorizationStack.addArrangedSubview(loginTextField)
         autorizationStack.addArrangedSubview(passwordTextField)
+        view.addSubview(loginButton)
+        view.addSubview(resetPasswordButton)
     }
     
     private func setupLayout() {
@@ -113,6 +139,17 @@ class ViewController: UIViewController {
         autorizationStack.snp.makeConstraints { make in
             make.top.equalTo(loginLabel.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(60)
+        }
+        
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(autorizationStack.snp.bottom).offset(45)
+            make.leading.trailing.equalToSuperview().inset(60)
+            make.height.equalTo(50)
+        }
+        
+        resetPasswordButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(loginButton.snp.bottom).offset(10)
         }
     }
     
