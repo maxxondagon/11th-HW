@@ -131,6 +131,52 @@ class ViewController: UIViewController {
         return dividingLines
     }()
     
+    private lazy var facebookButton: UIButton = {
+        let signFacebookButton = UIButton(type: .system)
+        signFacebookButton.setTitle("Facebook", for: .normal)
+        signFacebookButton.setTitleColor(UIColor.white, for: .normal)
+        signFacebookButton.layer.cornerRadius = 25
+        signFacebookButton.backgroundColor = .systemCyan
+        signFacebookButton.layer.shadowColor = UIColor.black.cgColor
+        signFacebookButton.layer.shadowOpacity = 0.3
+        signFacebookButton.layer.shadowOffset = .zero
+        signFacebookButton.layer.shadowRadius = 10
+        signFacebookButton.layer.shouldRasterize = true
+        signFacebookButton.layer.rasterizationScale = UIScreen.main.scale
+        signFacebookButton.translatesAutoresizingMaskIntoConstraints = false
+        return signFacebookButton
+    }()
+    
+    private lazy var facebookIcon: UIImageView = {
+        let facebookIcon = UIImage(named: "facebook")
+        let facebookImage = UIImageView(image: facebookIcon)
+        facebookImage.translatesAutoresizingMaskIntoConstraints = false
+        return facebookImage
+    }()
+
+    private lazy var twitterButton: UIButton = {
+        let signTwitterButton = UIButton(type: .system)
+        signTwitterButton.setTitle("Twitter", for: .normal)
+        signTwitterButton.setTitleColor(UIColor.white, for: .normal)
+        signTwitterButton.layer.cornerRadius = 25
+        signTwitterButton.backgroundColor = .systemCyan
+        signTwitterButton.layer.shadowColor = UIColor.black.cgColor
+        signTwitterButton.layer.shadowOpacity = 0.3
+        signTwitterButton.layer.shadowOffset = .zero
+        signTwitterButton.layer.shadowRadius = 10
+        signTwitterButton.layer.shouldRasterize = true
+        signTwitterButton.layer.rasterizationScale = UIScreen.main.scale
+        signTwitterButton.translatesAutoresizingMaskIntoConstraints = false
+        return signTwitterButton
+    }()
+
+    private lazy var twitterIcon: UIImageView = {
+        let twitterIcon = UIImage(named: "twitter")
+        let twitterImage = UIImageView(image: twitterIcon)
+        twitterImage.translatesAutoresizingMaskIntoConstraints = false
+        return twitterImage
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -153,6 +199,10 @@ class ViewController: UIViewController {
         separatorStack.addArrangedSubview(leftSeparatorLine)
         separatorStack.addArrangedSubview(separatorLabel)
         separatorStack.addArrangedSubview(rightSeparatorLine)
+        view.addSubview(facebookButton)
+        facebookButton.addSubview(facebookIcon)
+        view.addSubview(twitterButton)
+        twitterButton.addSubview(twitterIcon)
     }
     
     private func setupLayout() {
@@ -204,6 +254,34 @@ class ViewController: UIViewController {
         separatorStack.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(30)
             make.top.equalTo(resetPasswordButton.snp.bottom).offset(50)
+        }
+        
+        facebookButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(15)
+            make.top.equalTo(separatorStack.snp.bottom).offset(30)
+            make.width.equalTo(175)
+            make.height.equalTo(50)
+        }
+        
+        facebookIcon.snp.makeConstraints { make in
+            make.leading.equalTo(facebookButton.snp.leading).inset(10)
+            make.top.equalTo(facebookButton.snp.top).inset(10)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+        }
+        
+        twitterButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(15)
+            make.top.equalTo(separatorStack.snp.bottom).offset(30)
+            make.width.equalTo(175)
+            make.height.equalTo(50)
+        }
+        
+        twitterIcon.snp.makeConstraints { make in
+            make.leading.equalTo(twitterButton.snp.leading).inset(10)
+            make.top.equalTo(twitterButton.snp.top).inset(10)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
         }
     }
     
