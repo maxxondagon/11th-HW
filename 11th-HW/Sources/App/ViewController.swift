@@ -177,6 +177,34 @@ class ViewController: UIViewController {
         return twitterImage
     }()
     
+    private lazy var accountLabel: UILabel = {
+        let account = UILabel()
+        account.text = "Dont have account?"
+        account.textAlignment = .center
+        account.textColor = .white
+        account.font = UIFont.boldSystemFont(ofSize: 13)
+        account.translatesAutoresizingMaskIntoConstraints = false
+        return account
+    }()
+    
+    private lazy var signUpButton: UIButton = {
+        let signUp = UIButton(type: .system)
+        signUp.setTitle("Sign up", for: .normal)
+        signUp.setTitleColor(UIColor.systemMint, for: .normal)
+        signUp.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        signUp.translatesAutoresizingMaskIntoConstraints = false
+        return signUp
+    }()
+    
+    private lazy var signUpStack: UIStackView = {
+        let signUpStack = UIStackView()
+        signUpStack.axis = .horizontal
+        signUpStack.distribution = .equalSpacing
+        signUpStack.alignment = .center
+        signUpStack.translatesAutoresizingMaskIntoConstraints = false
+        return signUpStack
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -203,6 +231,9 @@ class ViewController: UIViewController {
         facebookButton.addSubview(facebookIcon)
         view.addSubview(twitterButton)
         twitterButton.addSubview(twitterIcon)
+        view.addSubview(signUpStack)
+        signUpStack.addArrangedSubview(accountLabel)
+        signUpStack.addArrangedSubview(signUpButton)
     }
     
     private func setupLayout() {
@@ -282,6 +313,21 @@ class ViewController: UIViewController {
             make.top.equalTo(twitterButton.snp.top).inset(10)
             make.width.equalTo(30)
             make.height.equalTo(30)
+        }
+        
+        accountLabel.snp.makeConstraints { make in
+            make.width.equalTo(150)
+            make.height.equalTo(30)
+        }
+        
+        signUpButton.snp.makeConstraints { make in
+            make.width.equalTo(80)
+            make.height.equalTo(30)
+        }
+        
+        signUpStack.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(90)
+            make.top.equalTo(facebookButton.snp.bottom).offset(40)
         }
     }
     
